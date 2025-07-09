@@ -16,7 +16,13 @@ app.register(fastifyCors, {
 app.setSerializerCompiler(serializerCompiler);
 app.setValidatorCompiler(validatorCompiler);
 
-app.listen({ port: process.env.PORT ? Number(process.env.PORT) : 3333}).then(() => {
-    console.log(`Port:${process.env.PORT}`)
-  console.log("HTTP server runing!");
+app.get("/health", () => {
+  return "OK";
 });
+
+app
+  .listen({ port: process.env.PORT ? Number(process.env.PORT) : 3333 })
+  .then(() => {
+    console.log(`Port:${process.env.PORT}`);
+    console.log("HTTP server runing!");
+  });
